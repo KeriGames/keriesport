@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keri - Esport</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafd;
+      color: #1d1d2b;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1300px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      z-index: 1000;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .logo {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #1d1d2b, #3b3b5c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1d1d2b;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4361ee;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-apply {
+      background: #1d1d2b;
+      color: white !important;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-apply:hover {
+      background: #4361ee;
+      transform: scale(1.02);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70%;
+      height: 140%;
+      background: radial-gradient(circle at 70% 30%, rgba(67, 97, 238, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 30% 70%, rgba(247, 37, 133, 0.1) 0%, transparent 50%);
+      filter: blur(80px);
+      z-index: -1;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(3.5rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(145deg, #1d1d2b, #4361ee, #f72585);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shift 6s ease infinite;
+    }
+
+    @keyframes shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #4a4a62;
+      margin-bottom: 30px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .meta-item h4 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    .meta-item p {
+      color: #6b6b8b;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-primary {
+      background: #1d1d2b;
+      color: white;
+      padding: 16px 42px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #4361ee;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 30px -10px #4361ee;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1d1d2b;
+      padding: 16px 42px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #1d1d2b;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: #1d1d2b;
+      color: white;
+    }
+
+    .hero-right {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 30px;
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 80px 0;
+    }
+
+    .rule-card {
+      background: white;
+      border-radius: 32px;
+      padding: 36px 28px;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .rule-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px -10px rgba(67,97,238,0.15);
+    }
+
+    .rule-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .rule-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .rule-card p {
+      color: #4e4e68;
+    }
+
+    .schedule-section {
+      margin: 60px 0;
+    }
+
+    .schedule-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .schedule-header h2 {
+      font-size: 2.8rem;
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .match-card {
+      background: white;
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: 0 20px 35px -8px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .match-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 45px -8px rgba(67,97,238,0.12);
+    }
+
+    .match-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #4361ee;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .match-teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 16px 0;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .vs {
+      color: #9b9bb0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: #f1f3fa;
+      padding: 4px 12px;
+      border-radius: 30px;
+    }
+
+    .match-time {
+      color: #6b6b8b;
+      font-size: 0.85rem;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #f0f0f5;
+    }
+
+    .scoreboard-wrap {
+      background: white;
+      border-radius: 40px;
+      padding: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+      margin: 60px 0;
+    }
+
+    .status-badge {
+      background: #f1f3fa;
+      display: inline-block;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #4361ee;
+      margin-bottom: 30px;
+    }
+
+    .scoreboard-table {
+      width: 100%;
+    }
+
+    .scoreboard-row {
+      display: grid;
+      grid-template-columns: 80px 2fr 1.5fr 1.5fr;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .scoreboard-header {
+      color: #9b9bb0;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .rank-number {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #e8e8f0;
+    }
+
+    .team-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .points {
+      color: #4361ee;
+      font-weight: 800;
+    }
+
+    .empty-state {
+      padding: 60px 20px;
+      background: #f8f9ff;
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    .roster-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .roster-header h2 {
+      font-size: 2.8rem;
+    }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 80px;
+    }
+
+    .roster-card {
+      background: white;
+      border-radius: 36px;
+      padding: 30px;
+      box-shadow: 0 20px 35px -8px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+
+    .roster-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 55px -10px rgba(67,97,238,0.12);
+    }
+
+    .team-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .team-title h3 {
+      font-size: 1.6rem;
+    }
+
+    .team-tag {
+      background: #f1f3fa;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #4361ee;
+    }
+
+    .player-entry {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed #eee;
+    }
+
+    .player-role {
+      color: #9b9bb0;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .apply-modern {
+      background: white;
+      border-radius: 60px;
+      padding: 70px;
+      margin: 80px 0;
+      box-shadow: 0 40px 70px -15px rgba(0,0,0,0.1);
+    }
+
+    .apply-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+      margin-top: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #4e4e60;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 16px 20px;
+      background: #f8f9ff;
+      border: 1.5px solid #e8eaf0;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #4361ee;
+      outline: none;
+    }
+
+    .btn-submit {
+      background: #1d1d2b;
+      color: white;
+      border: none;
+      padding: 18px 45px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: #4361ee;
+      transform: translateY(-3px);
+    }
+
+    .edit-btn, .delete-btn {
+      background: #f1f3fa;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 12px;
+      margin-right: 10px;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+
+    .edit-btn:hover {
+      background: #4361ee;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background: #e10600;
+      color: white;
+    }
+
+    .my-team-badge {
+      display: inline-block;
+      background: #4361ee;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      margin-left: 10px;
+    }
+
+    .user-status-panel {
+      background: linear-gradient(135deg, #f5f7ff, #eef2ff);
+      border-radius: 30px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid #e0e7ff;
+    }
+
+    footer {
+      padding: 60px 0 30px;
+      border-top: 1px solid #eaeef5;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #1d1d2b;
+      margin-left: 40px;
+      font-weight: 500;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #6b6b8b;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1d1d2b;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 50px;
+      z-index: 10000;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-content, .apply-grid, .rules-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .apply-modern {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">KERI//ESPORTS</div>
+    <div class="nav-links">
+      <a href="#">Kezdőlap</a>
+      <a href="#rules">Részletek</a>
+      <a href="#schedule">Mérkőzések</a>
+      <a href="#standings">Állás</a>
+      <a href="#rosters">Csapatok</a>
+    </div>
+    <a href="#apply" class="nav-apply">Jelentkezés</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <h1>KERI<br><span class="hero-gradient">esport</span><br>Kupa</h1>
+          <p class="hero-tagline">Rakj össze egy cs2 csapatot. Képviseld az osztályod. Képviseld az iskolánkat az esportban</p>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <h4>Március 30-31</h4>
+              <p>Selejtező</p>
+            </div>
+            <div class="meta-item">
+              <h4>Április 13</h4>
+              <p>Döntő</p>
+            </div>
+            <div class="meta-item">
+              <h4>5v5</h4>
+              <p>Forma</p>
+            </div>
+          </div>
+          <div class="cta-group">
+            <button class="btn-primary" onclick="document.getElementById('apply').scrollIntoView()">Regisztráció</button>
+            <button class="btn-outline" onclick="document.getElementById('rules').scrollIntoView()">Szabályok</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="dates-panel">
+            <p style="font-weight: 600; margin-bottom: 10px;">📍 <strong>304-es terem</strong></p>
+            <p style="color: #5a5a78;">Makó, Posta u. 4-6</p>
+            <hr style="margin: 25px 0; border: 0.5px solid #eee;">
+            <p><span style="background: #4361ee; color: white; padding: 5px 12px; border-radius: 30px;">#ChampionshipSeries2026</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" id="rules">
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-icon">🏆</div>
+        <h3>Verseny formája</h3>
+        <p>egyszerre két csapat lesz fent a 304-es teremben saját periféria (billenytűzet,egér) használata engedélyezett.
+          A tanár a dikákok ellenőrzése után elindítja a mérkőzést, a nyerő csapat 10 ponttal gazdagodik.
+          Az egész verseny végén a legtöbb ponttal rendelkező csapat fog játszani más iskolák ellen a fődíjért.
+        </p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">📋</div>
+        <h3>Szabályok & részvétel</h3>
+        <p>Minden játékost regisztrálni kell, mivel a verseny iskola időben zajlik és ezt a tanárok felé így tudjuk jelezni.
+            Emellett ha a csapat egyik játékosa nemtud részt venni csere alkalmazható, ha a csapat nem tud játszani 10 pont levonás.
+        </p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🎁</div>
+        <h3>Büszkeség & díjjazás</h3>
+        <p>A döntős csapatok más iskolák ellen képviselhetik a kerit. További jutalom a vezetőséggel való egyeztetés után fog megjelenni</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="container schedule-section" id="schedule">
+    <div class="schedule-header">
+      <h2>📅 Foruló időpontok</h2>
+      <span style="color:#4361ee; font-weight: 600;">Ki és mikor</span>
+    </div>
+    <div id="schedule-container">
+      <div class="loading">Menetrend betöltése .....</div>
+    </div>
+  </section>
+
+  <section class="container" id="standings">
+    <div class="scoreboard-wrap">
+      <div class="status-badge">⚡ Automatikusan frissül</div>
+      <div id="matches-container">
+        <div class="loading">Meccsek betöltése...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="rosters">
+    <div class="roster-header">
+      <h2>Csapat helyezések</h2>
+      <span style="color:#4361ee; font-weight: 600;">Az elit csapatok akik az idei évben versenyeznek.</span>
+    </div>
+    <div id="teams-container">
+      <div class="loading">Csapatok betöltése...</div>
+    </div>
+  </section>
+
+  <div class="container" id="apply">
+    <div class="apply-modern">
+      <div class="roster-header" style="margin-bottom: 0;">
+        <h2>Nevezd a csapatod.</h2>
+      </div>
+      <div class="apply-grid">
+        <div class="apply-left">
+          <h3>Regisztráld a csapatod</h3>
+          <p>Csak 5 fős csapatokat fogadunk. Add meg a pontos neved, hogy a szervezők ellenőrizhessék a létszámot.</p>
+          <div style="margin-top: 30px; background: #f5f7ff; border-radius: 30px; padding: 25px;">
+            <p style="font-weight: 700;">📢 Jelentkezési határidő: <strong>március 29.</strong></p>
+            <p style="margin-top: 10px;">Első forduló : Március 31 </p>
+          </div>
+          <div style="margin-top: 30px; background: #f5f7ff; border-radius: 30px; padding: 25px;">
+            <p style="font-weight: 700;">❌ Bármiféle probléma esetén <strong>keriesport@gmail.com</strong></p>
+          </div>
+        </div>
+        <div>
+          <form id="application-form">
+            <div class="form-group">
+              <label for="teamName">Csapat név *</label>
+              <input type="text" id="teamName" required placeholder="pl. Csipet csapat">
+            </div>
+            <div class="form-group">
+              <label for="captainEmail">Kapitány email *</label>
+              <input type="email" id="captainEmail" required placeholder="pelda@keri.mako.hu">
+            </div>
+            <div class="form-group">
+              <label for="players">5 játékos (név / becenév) *</label>
+              <textarea id="players" rows="3" required placeholder="Kis(raketa)Csaba,Nagy(Feco)Ferenc,Álmos(célzóvíz)Aurél,Jakob(öcsi)Ákos,Malaj(Hollywood)Zsolt"></textarea>
+              <p style="font-size:0.75rem; color:#888; margin-top:5px;">Pontosan 5 fő, vesszővel elválasztva</p>
+            </div>
+            <div class="form-group">
+              <label for="teacher">Osztályfőnök</label>
+              <input type="text" id="teacher" placeholder="pl. Vidéki Gyula Milán">
+            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">Jelentkezés beküldése →</button>
+          </form>
+          <div id="user-status-panel"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-flex">
+      <div>© 2026 H SZC Makói Návay Lajos Technikum – Esport</div>
+      <div class="footer-links">
+        <a href="#">KERI.hu</a>
+        <a href="#">Szabályzat</a>
+        <a href="#">Kapcsolat</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ========== CONFIGURATION ==========
+    const GOOGLE_SHEETS_API = 'https://script.google.com/macros/s/AKfycbwTciKZ56X6M5q757ZVE9SRMfg9t9h2O2ZacgVnTfau1oKfddRharnePftVRxz35freqg/exec';
+    const SECRET_KEY = 'K3r1_G4m3s_2026_S3cur3_K3y_!@#_Sp0rt';
+    
+    // Bad words filter
+    const BAD_WORDS = ['fuck', 'shit', 'bitch', 'kurva', 'fasz', 'picsa', 'geci', 'basz', 'segg'];
+    
+    let userTeam = null;
+    let isEditMode = false;
+    let currentTeams = [];
+    
+    function containsBadWords(text) {
+      if (!text) return false;
+      const lowerText = text.toLowerCase();
+      return BAD_WORDS.some(badWord => lowerText.includes(badWord));
+    }
+    
+    function validateTeamName(name) {
+      if (!name || name.length < 3) return 'A csapatnév túl rövid (minimum 3 karakter)';
+      if (name.length > 50) return 'A csapatnév túl hosszú (maximum 50 karakter)';
+      if (containsBadWords(name)) return 'A csapatnév nem tartalmazhat sértő szavakat';
+      return null;
+    }
+    
+    function validateEmail(email) {
+      if (!email) return 'Email cím megadása kötelező';
+      if (!email.includes('@') || !email.includes('.')) return 'Érvénytelen email cím';
+      if (containsBadWords(email)) return 'Az email cím nem tartalmazhat sértő szavakat';
+      return null;
+    }
+    
+    function validatePlayers(players) {
+      const playerList = players.split(',').map(p => p.trim()).filter(p => p);
+      if (playerList.length !== 5) return 'Pontosan 5 játékost kell megadnod';
+      for (let player of playerList) {
+        if (player.length < 2) return `A játékos név "${player}" túl rövid`;
+        if (containsBadWords(player)) return `A játékos név "${player}" sértő szavakat tartalmaz`;
+      }
+      return null;
+    }
+    
+    function showToast(message, isError = false) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      toast.style.background = isError ? '#e10600' : '#1d1d2b';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+    
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    
+    function parsePlayers(playersData) {
+      if (!playersData) return [];
+      if (Array.isArray(playersData)) return playersData;
+      if (typeof playersData === 'string') return playersData.split(',').map(p => p.trim()).filter(p => p);
+      return [];
+    }
+    
+    function updateUserStatusPanel() {
+      const panel = document.getElementById('user-status-panel');
+      if (!panel) return;
+      
+      if (userTeam) {
+        panel.innerHTML = `
+          <div class="user-status-panel">
+            <p style="font-weight: 600; margin-bottom: 10px;">🎮 A TE CSAPATOD: <strong>${escapeHtml(userTeam.name)}</strong></p>
+            <button onclick="editRegistration()" class="edit-btn">✏️ Módosítás</button>
+            <button onclick="deleteRegistration()" class="delete-btn">🗑️ Törlés</button>
+            <p style="font-size: 0.8rem; color: #6b6b8b; margin-top: 10px;">📧 ${escapeHtml(userTeam.captainEmail)}</p>
+          </div>
+        `;
+      } else {
+        panel.innerHTML = '';
+      }
+    }
+    
+    function checkUserRegistration(teams) {
+      currentTeams = teams;
+      const storedTeam = localStorage.getItem('myTeam');
+      if (storedTeam) {
+        try {
+          const stored = JSON.parse(storedTeam);
+          const teamExists = teams.some(t => t.captainEmail === stored.captainEmail);
+          if (teamExists) {
+            userTeam = teams.find(t => t.captainEmail === stored.captainEmail);
+            localStorage.setItem('myTeam', JSON.stringify(userTeam));
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.textContent = '✅ Már regisztráltál!';
+            }
+            updateUserStatusPanel();
+          } else {
+            localStorage.removeItem('myTeam');
+            userTeam = null;
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Jelentkezés beküldése →';
+            }
+            updateUserStatusPanel();
+          }
+        } catch (e) {
+          localStorage.removeItem('myTeam');
+          userTeam = null;
+          updateUserStatusPanel();
+        }
+      } else {
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Jelentkezés beküldése →';
+        }
+        updateUserStatusPanel();
+      }
+    }
+    
+    async function editRegistration() {
+      if (!userTeam) return;
+      
+      document.getElementById('teamName').value = userTeam.name;
+      document.getElementById('captainEmail').value = userTeam.captainEmail;
+      document.getElementById('players').value = userTeam.players;
+      document.getElementById('teacher').value = userTeam.teacher || '';
+      
+      isEditMode = true;
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.textContent = '💾 Módosítások mentése';
+      submitBtn.disabled = false;
+      
+      document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+      showToast('✏️ Szerkesztési mód - Módosítsd az adatokat és mentsd el');
+    }
+    
+    async function deleteRegistration() {
+      if (!userTeam) return;
+      
+      if (confirm(`Biztosan törölni szeretnéd a "${userTeam.name}" csapat jelentkezését? Ez a művelet nem visszavonható!`)) {
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.textContent = 'Törlés folyamatban...';
+        submitBtn.disabled = true;
+        
+        try {
+          const response = await fetch(GOOGLE_SHEETS_API, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'delete',
+              secret: SECRET_KEY,
+              captainEmail: userTeam.captainEmail
+            })
+          });
+          
+          localStorage.removeItem('myTeam');
+          userTeam = null;
+          isEditMode = false;
+          showToast('🗑️ Jelentkezésed törölve! Újra jelentkezhetsz.');
+          
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Jelentkezés beküldése →';
+          
+          updateUserStatusPanel();
+          document.getElementById('application-form').reset();
+          
+          setTimeout(() => {
+            loadFromGoogleSheets('teams', displayTeams);
+          }, 500);
+        } catch (error) {
+          showToast('❌ Hiba történt a törlés során', true);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Jelentkezés beküldése →';
+        }
+      }
+    }
+    
+    window.editRegistration = editRegistration;
+    window.deleteRegistration = deleteRegistration;
+    
+    function displaySchedule(schedule) {
+      const container = document.getElementById('schedule-container');
+      if (!schedule || schedule.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>📅 Nincsennek még beosztva a csapatok</h3><p>Nézz vissza később a teljes beosztásokért.</p></div>`;
+        return;
+      }
+      
+      const grid = document.createElement('div');
+      grid.className = 'schedule-grid';
+      schedule.forEach(match => {
+        const card = document.createElement('div');
+        card.className = 'match-card';
+        card.innerHTML = `
+          <div class="match-date">${escapeHtml(match.date || 'TBA')} · ${escapeHtml(match.stage || 'Match')}</div>
+          <div class="match-teams">
+            <span><strong>${escapeHtml(match.team1)}</strong></span>
+            <span class="vs">VS</span>
+            <span><strong>${escapeHtml(match.team2)}</strong></span>
+          </div>
+          <div class="match-time">
+            ⏱️ ${escapeHtml(match.time || 'TBA')} · 📍 ${escapeHtml(match.location || '304-es terem')}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      container.innerHTML = '';
+      container.appendChild(grid);
+    }
+    
+    function displayMatches(matches) {
+      const container = document.getElementById('matches-container');
+      if (!matches || matches.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>❌ Nincsennek még felvett meccsek.</h3><p>Legyél te az első aki történelmet írsz - regisztráld be a csapatod.</p></div>`;
+        return;
+      }
+      
+      const html = `
+        <div class="scoreboard-table">
+          <div class="scoreboard-row scoreboard-header">
+            <div>HELYEZÉS</div>
+            <div>CSAPAT</div>
+            <div>GY/V</div>
+            <div>PONTOK</div>
+          </div>
+          ${matches.map((match, idx) => `
+            <div class="scoreboard-row">
+              <div class="rank-number">${idx + 1}</div>
+              <div class="team-name">${escapeHtml(match.teamName)}</div>
+              <div>${match.wins || 0} - ${match.losses || 0}</div>
+              <div class="points">${match.points || 0} PTS</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      container.innerHTML = html;
+    }
+    
+    function displayTeams(teams) {
+      const container = document.getElementById('teams-container');
+      if (!teams || teams.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>⚡ Még nincs regisztrált csapat</h3><p style="margin: 15px 0 25px;">Legyél te az első aki összeállítja a csapatod.</p><button class="btn-primary" onclick="document.getElementById('apply').scrollIntoView()">Jelentkezés most</button></div>`;
+        checkUserRegistration(teams);
+        return;
+      }
+      
+      checkUserRegistration(teams);
+      
+      const grid = document.createElement('div');
+      grid.className = 'roster-grid';
+      teams.forEach((team, index) => {
+        const playersList = parsePlayers(team.players);
+        const isMyTeam = userTeam && userTeam.captainEmail === team.captainEmail;
+        const card = document.createElement('div');
+        card.className = 'roster-card';
+        card.innerHTML = `
+          <div class="team-title">
+            <h3>${escapeHtml(team.name)}${isMyTeam ? '<span class="my-team-badge">A TE CSAPATOD</span>' : ''}</h3>
+            <span class="team-tag">#${index + 1}</span>
+          </div>
+          ${playersList.map((player, i) => `
+            <div class="player-entry">
+              <span class="player-role">JÁTÉKOS ${i + 1}</span>
+              <span><strong>${escapeHtml(player)}</strong></span>
+            </div>
+          `).join('')}
+          <div class="player-entry" style="margin-top: 12px;">
+            <span class="player-role">KAPITÁNY</span>
+            <span>📧 ${escapeHtml(team.captainEmail)}</span>
+          </div>
+          ${team.teacher ? `<div class="player-entry">
+            <span class="player-role">OSZTÁLYFŐNÖK</span>
+            <span>${escapeHtml(team.teacher)}</span>
+          </div>` : ''}
+        `;
+        grid.appendChild(card);
+      });
+      container.innerHTML = '';
+      container.appendChild(grid);
+    }
+    
+    async function loadFromGoogleSheets(type, displayFunction) {
+      try {
+        const url = `${GOOGLE_SHEETS_API}?type=${type}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to load ${type}`);
+        const data = await response.json();
+        displayFunction(data);
+      } catch (error) {
+        console.error(`Error loading ${type}:`, error);
+      }
+    }
+    
+    async function saveTeamToGoogleSheets(teamData, isUpdate = false) {
+      try {
+        const payload = {
+          type: isUpdate ? 'update' : 'team',
+          secret: SECRET_KEY,
+          ...teamData
+        };
+        
+        if (isUpdate && userTeam) {
+          payload.originalEmail = userTeam.captainEmail;
+        }
+        
+        const response = await fetch(GOOGLE_SHEETS_API, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        return true;
+      } catch (error) {
+        console.error('Error saving to Google Sheets:', error);
+        return false;
+      }
+    }
+    
+    document.getElementById('application-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const teamName = document.getElementById('teamName').value.trim();
+      const captainEmail = document.getElementById('captainEmail').value.trim();
+      const playersInput = document.getElementById('players').value.trim();
+      const teacher = document.getElementById('teacher').value.trim();
+      
+      const nameError = validateTeamName(teamName);
+      if (nameError) { showToast(nameError, true); return; }
+      
+      const emailError = validateEmail(captainEmail);
+      if (emailError) { showToast(emailError, true); return; }
+      
+      const playersError = validatePlayers(playersInput);
+      if (playersError) { showToast(playersError, true); return; }
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Küldés folyamatban...';
+      submitBtn.disabled = true;
+      
+      const newTeam = {
+        name: teamName,
+        captainEmail: captainEmail,
+        players: playersInput,
+        teacher: teacher,
+        registeredAt: new Date().toISOString()
+      };
+      
+      let success = false;
+      
+      if (isEditMode && userTeam) {
+        success = await saveTeamToGoogleSheets({ newTeam, originalEmail: userTeam.captainEmail }, true);
+        if (success) {
+          localStorage.setItem('myTeam', JSON.stringify(newTeam));
+          userTeam = newTeam;
+          showToast(`✅ Sikeres módosítás! Csapat: ${teamName}`);
+          isEditMode = false;
+          submitBtn.textContent = '✅ Már regisztráltál!';
+          submitBtn.disabled = true;
+          updateUserStatusPanel();
+        }
+      } else {
+        success = await saveTeamToGoogleSheets(newTeam, false);
+        if (success) {
+          localStorage.setItem('myTeam', JSON.stringify(newTeam));
+          userTeam = newTeam;
+          showToast(`✅ Sikeres jelentkezés! Csapat: ${teamName}`);
+          submitBtn.disabled = true;
+          submitBtn.textContent = '✅ Már regisztráltál!';
+          updateUserStatusPanel();
+        }
+      }
+      
+      if (!success) {
+        showToast('❌ Hiba történt. Próbáld újra!', true);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+      
+      document.getElementById('application-form').reset();
+      setTimeout(() => {
+        loadFromGoogleSheets('teams', displayTeams);
+      }, 1000);
+    });
+    
+    function startAutoRefresh() {
+      setInterval(() => {
+        loadFromGoogleSheets('teams', displayTeams);
+        loadFromGoogleSheets('schedule', displaySchedule);
+        loadFromGoogleSheets('matches', displayMatches);
+      }, 30000);
+    }
+    
+    loadFromGoogleSheets('teams', displayTeams);
+    loadFromGoogleSheets('schedule', displaySchedule);
+    loadFromGoogleSheets('matches', displayMatches);
+    startAutoRefresh();
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
